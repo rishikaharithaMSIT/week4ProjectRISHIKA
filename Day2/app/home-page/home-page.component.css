@@ -1,0 +1,23 @@
+#carousel {
+    margin-left: 5%;
+    margin-right : 5%;
+    margin-top: 2%;
+    margin-bottom: 5%;
+}
+.carousel-inner {
+    max-height: 350px;
+}
+img {
+    width: 100%;
+    max-height: 350px;
+}
+.card {
+    border: 1px solid black;
+}
+.row {
+    margin-bottom : 2%
+}
+.center {
+    margin-left: auto;
+    margin-right: auto;
+}
