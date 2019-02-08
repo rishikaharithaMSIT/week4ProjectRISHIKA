@@ -1,0 +1,10 @@
+.input-group {
+    position: fixed;
+    z-index:1;
+    width: 100%;
+}
+
+#list {
+    position: absolute;
+    top: 40px;
+}

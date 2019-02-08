@@ -1,0 +1,55 @@
+<nav class="navbar navbar-light bg-light">
+    <span class="navbar-brand mb-0 h1">Navbar</span>
+  </nav>
+  <div class = "container-fluid">
+      <ul class="list-group" style = "margin-bottom: 10px;">
+          <li class="list-group-item" *ngFor = "let item of cartItems; index as i">
+            <!-- {{item.prodname}}
+            {{item.prodimg}}
+            {{item.prodprice}} -->
+
+            <div class = "row">
+                <div class = "col-lg-2 col-md-2 col-sm-2">
+                    <img src="{{item.prodimg}}"  alt="..." style = "width: 55%; height: 70%">
+                </div>
+                <div class = "col-lg-4 col-md-4 col-sm-4" id="item" >
+                    <h4>{{item.prodname}}</h4>
+                </div>
+                <div class = "col-md-4">
+                    <!-- <app-quantity [price] = "item.price" [max] = "item.availability"></app-quantity> -->
+                    <div class = "row" style = "margin-top: 20%">
+                        <div class="col-md-3">
+                          <h4>{{item.prodprice}}</h4>
+                        </div>
+                        <div class = "col-md-5">
+                          <div class = "row">
+                              <div class = "col-md-3">
+                                <button class="btn btn-primary" id="minusbutton" (click) = "decreasequant(item.availability)" [disabled]= "minusstatus"> <i class="fas fa-minus" ></i></button>
+                              </div>
+                              <div class = "col-md-6">
+                                  <input style = "size:10%;"type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"  [value] = "quantity" style="text-align: center;" >
+                              </div>
+                              <div class = "col-md-3">
+                                <button class ="btn btn-primary" id="plusbutton" (click) = "increasequant(item.availability);" [disabled] = "plusstatus"> <i class="fas fa-plus" ></i></button>
+                              </div> 
+                          </div>
+                        </div>
+                        <div class = "col-md-4">
+                          <h4 id = "price{{index}}">{{total}}</h4>
+                        </div>
+                                                      
+                      </div>
+                </div>
+                <div class = "col-lg-2 col-md-2 col-sm-2" id="item">
+                    <button type="button" class="btn btn-outline-danger" style = "margin-left: 10%">Remove</button>
+                </div>
+            </div>
+          </li>
+        </ul>
+        <div class = "row">
+          <div class = "col-lg-10"></div>
+          <div class = "col-lg-2">
+              <button style = "float:right;" type="button" class="btn btn-warning">CHECK OUT</button>
+          </div>
+        </div>
+  </div>

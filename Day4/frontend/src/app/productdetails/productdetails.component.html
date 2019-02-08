@@ -1,0 +1,73 @@
+<div class = "container1" style="margin:50px 50px 50px 50px">
+  <div class = "row">
+    <div class = "col-md-4">
+
+      
+      <div class="polaroid">
+          <img src = {{product?.image}} alt="5 Terre" style="width:100%">
+          <div class="containerinside">
+          <p>{{product?.rating}}/5</p>
+          </div>
+      </div>
+        
+    </div>
+    <div class = "col-md-5"  style="padding:-20px;float:left">
+         <div class = "container">
+              <h4>Name: {{product?.name}} </h4>
+         </div>
+         <br>
+         <div class = "container">
+               <h4>Description : {{product?.description}} </h4>
+         </div>
+         <br>
+         <br>
+         <div class = "container">
+              <h4>Price : {{product?.price}} </h4>
+         </div>
+         <br>
+         <div class = "container">
+            <h4>Available : {{product?.availability}} </h4>
+         </div>
+
+         <div class = "container">
+                 
+
+         </div>
+
+    </div>
+    <div class = "col-md-3"  style="padding-left:50px">
+        <br>
+        <button type="button" class="btn btn-outline-info" (click) = "addtocart(product?._id)">Add to cart</button>
+        <br>
+        <br>
+        <button type="button" class="btn btn-outline-secondary">Share</button>
+      
+    </div>
+  </div>
+
+</div>
+<!-- ------------------------------------------------------------------------------------ -->
+<div class = "container-fluid">
+  <div class = "row">
+    <div class = "col-md-3">
+
+    </div>
+    <div class = "col-md-6">
+      <label style = "font-size: 20px">Comment : </label>
+      <br>
+      <textarea  rows="4" cols="80" [(ngModel)] = "comment"></textarea>
+
+    </div>
+    <div class = "col-md-3" style = "padding:50px">
+        <button type="button" class="btn btn-primary btn-lg" (click) = "saveComment()">Post</button>
+    </div>
+  </div> 
+</div>
+<ul class="list-group">
+  <li class="list-group-item" *ngFor="let review of product?.reviews">
+    <div>
+      <p>{{review.name}}</p>
+      <p>{{review.comment}}</p>
+    </div> 
+  </li>
+</ul>
