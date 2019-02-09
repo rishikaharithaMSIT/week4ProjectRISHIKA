@@ -1,0 +1,129 @@
+/* .input-group {
+    position: fixed;
+    z-index:1;
+    width: 100%;
+}
+
+#list {
+    position: absolute;
+    top: 40px;
+} */
+
+
+
+.input-group {
+    /* position: fixed; */
+    /* z-index:1; */
+    width: 80%;
+    padding-left: 200px;
+}
+
+#list {
+    position: relative;
+    top: 40px;
+}
+
+body {
+    margin: 20px;
+  }
+
+.inner{
+    border :2px solid black;
+    margin-bottom: 10px;
+    margin-left: 5%;
+    margin-right: 2%;
+    border-radius: 10px;
+}
+.checked {
+    color: red;
+  }
+  /* .search_input{
+    color: white;
+    border: 0;
+    outline: 0;
+    background: none;
+    width: 0;
+    caret-color:transparent;
+    line-height: 40px;
+    transition: width 0.4s linear;
+    }
+    .searchbar{
+        margin-bottom: auto;
+        margin-top: auto;
+        height: 60px;
+        background-color: #353b48;
+        border-radius: 30px;
+        padding: 10px;
+        } */
+.search_input {
+    border-radius: 30px;
+    background-color: #353b48;
+    line-height: 40px;
+    color: white;
+}
+/* .search_icon{
+    height: 40px;
+    width: 40px;
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color:black;
+    }  */
+    
+
+
+  /* 
+    
+
+    .searchbar:hover > .search_input{
+    padding: 0 10px;
+    width: 450px;
+    caret-color:red;
+    transition: width 0.4s linear;
+    }
+
+    .searchbar:hover > .search_icon{
+    background: white;
+    color: #e74c3c;
+    }
+
+    /* .search_icon{
+    height: 40px;
+    width: 40px;
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color:white;
+    } */ 
+
+.stars-outer {
+    display: inline-block;
+    position: relative;
+    font-family: FontAwesome;
+}
+
+.stars-outer::before {
+    content: "\f006 \f006 \f006 \f006 \f006";
+}
+
+#stars-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 0;
+}
+
+#stars-inner::before {
+    content: "\f005 \f005 \f005 \f005 \f005";
+    color: #f8ce0b;
+}
+
+#a:hover {
+    color: blue;
+}
