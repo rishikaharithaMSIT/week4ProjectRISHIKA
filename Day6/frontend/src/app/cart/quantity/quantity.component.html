@@ -1,0 +1,23 @@
+<div class = "row" style = "margin-top: 20%">
+  <div class="col-md-3">
+    <h4>{{price}}</h4>
+  </div>
+  <div class = "col-md-5">
+    <div class = "row">
+        <div class = "col-md-3">
+          <button class="btn btn-primary" id="minusbutton" (click) = "decreasequant(i)" [disabled]= "minusstatus"> <i class="fas fa-minus" ></i></button>
+        </div>
+        <div class = "col-md-6">
+            <input style = "size:10%;"type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"  [value] = "quantity" style="text-align: center;" >
+        </div>
+        <div class = "col-md-3">
+          <button class ="btn btn-primary" id="plusbutton" (click) = "increasequant(i);" [disabled] = "plusstatus"> <i class="fas fa-plus" ></i></button>
+        </div> 
+    </div>
+  </div>
+  <div class = "col-md-4">
+    <h4 id = "price{{index}}">{{total}}</h4>
+  </div>
+                                
+</div>  
+

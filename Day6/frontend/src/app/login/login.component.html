@@ -1,0 +1,39 @@
+<app-navbar></app-navbar>
+<flash-messages></flash-messages>
+<div class="container-fluid">
+    <div class="row" id= "formrow">
+      <div class="col-md-4">
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-header" id="header">Login</div>
+          <div class="card-body">
+            <form [formGroup] = "login">
+              <div class="form-group">
+                <label for="username"><i class="fas fa-user" ></i> &nbsp;Email address/ Phone Number:</label>
+                <input type="text" class="form-control" id="username" formControlName = "username" [ngClass]="{ 'is-invalid': submitted && l.username.errors }" #username >
+                <div *ngIf="submitted && l.username.errors" class="invalid-feedback">
+                  <div *ngIf="l.username.errors.required" style="color:red">**Phone number/Email is required**</div>
+                </div>  
+              </div>
+              <div class="form-group">
+                <label for="pwd">Password:</label>
+                <input type="password" class="form-control" formControlName = "password" id="pwd" [ngClass]="{ 'is-invalid': submitted && l.username.errors }" #password>
+                <div *ngIf="submitted && l.password.errors" class="invalid-feedback">
+                    <div *ngIf="l.password.errors.required" style="color:red">**Password is required**</div>
+                  </div>
+              </div>
+              <button type="submit" class="btn btn-primary" id = "login" (click) = "checkLogin(username.value, password.value)">Login</button>
+              <br>
+              <div class="row">
+                <a href="/signup" id = "registerlink">Not an user? Register</a>
+              </div>
+            </form>
+          </div> 
+        </div>
+      </div>
+      <div class="col-md-4">
+    
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,195 @@
+<app-navbar></app-navbar>
+<div class="container-fluid">
+  <h2 id = "name"><span class="label label-warning">{{name}}</span></h2>  
+  <h5><span class="label label-primary">YOUR ORDER</span></h5>
+  <hr>
+  <div class = "table-responsive">
+      <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th></th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor = "let item of cart">
+              <td><img src="{{item.prodimg}}" alt="Forest"></td>
+              <td><a [routerLink] = "['/products/'+item.product]">{{item.prodname}}</a></td>
+              <td>{{item.prodprice}}</td>
+              <td>{{item.quantity}}</td>
+              <td>{{item.prodprice * item.quantity}}</td>
+            </tr>
+          </tbody>
+        </table>
+  </div>          
+ 
+
+  <h2 id = "price"><span class="label label-warning" style = "float:right">TOTAL : {{totalPrice}}</span></h2>
+  <br>
+  <br>
+  <div class = "row" *ngIf = "!user">
+    <div class = "col-lg-4">
+        <div class="card">
+            <div class="card-header" id="header">Please Fill the Shipping details</div>
+            <div class="card-body">
+                <form (ngSubmit)="placeGuestOrder(name.value,phnum.value,email.value,address.value)" [formGroup]="ShippingForm" #documentEditForm="ngForm">
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.name.errors}" #name/>
+                        <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                            <div *ngIf="f.name.errors.required" style="color:red">**Name is required**</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-phone"></i>&nbsp;Phone Number:</label>
+                        <input type="text" formControlName="phnum" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.phnum.errors }" #phnum/>
+                        <div *ngIf="submitted && f.phnum.errors" class="invalid-feedback">
+                            <div *ngIf="f.phnum.errors.required" style="color:red">**Phone number is required**</div>
+                            <div *ngIf="f.phnum.errors.minlength" style="color:red">**Phone number must be valid**</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-envelope"></i> &nbsp;Email</label>
+                        <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" #email/>
+                        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                            <div *ngIf="f.email.errors.required" style="color:red">**Email is required**</div>
+                            <div *ngIf="f.email.errors.email" style="color:red">**Email must be a valid email address**</div>
+                        </div>
+                    </div>
+                  
+                  <div class="form-group">
+                      <label><i class="fas fa-address-card"></i> &nbsp;Address:</label>
+                      <textarea rows = "5" type = "text" formControlName = "address" class= "form-control" value="" [ngClass] = "{'is-invalid': submitted && f.address.errors}" #address></textarea>
+                      <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+                          <div *ngIf="f.address.errors.required" style="color:red">**Address is required**</div>
+                      </div>
+                  </div>
+                  
+                </form>
+            </div> 
+          </div>    
+    </div>
+    <div class = "col-lg-2"></div>
+    <div class = "col-lg-4" *ngIf = "!user">
+        <div class="list-group">
+            <p class="list-group-item active">PAYMENT METHOD</p>
+            <div class="radio" class="list-group-item">
+                <div class = "col-lg-1">
+                    <input type="radio" name="optradio" (click)="savePayment('CreditCard')">
+                </div>
+                <i class="fas fa-credit-card" style = "margin-right: 10px;"></i> <label> Credit Card</label>
+              </div>
+              <div class="radio" class="list-group-item">
+                  <div class = "col-lg-1">
+                      <input type="radio" name="optradio" (click)="savePayment('DebitCard')">
+                  </div>
+                   <span class="glyphicon glyphicon-credit-card" style = "margin-right: 10px;"></span><label>Debit Card</label>
+                </div>
+                <div class="radio" class="list-group-item">
+                    <div class = "col-lg-1">
+                        <input type="radio" name="optradio" (click)="savePayment('COD')">
+                    </div>
+                     <i class="far fa-money-bill-alt" style = "margin-right: 10px;"></i><label>COD</label>
+                  </div>
+                  <div class="radio" class="list-group-item">
+                      <div class = "col-lg-1">
+                          <input type="radio" name="optradio" (click)="savePayment('NetBanking')">
+                      </div>
+                      <i class="fas fa-university" style = "margin-right: 10px;"></i><label>Net Banking</label>
+                    </div>  
+
+          </div>
+    </div>
+  </div>
+  <div class = "row">
+    <div class = "col-lg-6">
+        <div class = "table-responsive" *ngIf = "user">
+            <table class="table table-striped fixed" >
+                <tbody >
+                  <tr >
+                      <td style = "width : 250px;" *ngFor = "let address of cartItems?.address">
+                          <div class="card">
+                              <div class="container limit">
+                                   <div class = "row">
+                                     <div class = "col-lg-1">
+                                        <input type = "radio" name = "opt-radio" (click) = "setAddress(address)">
+                                     </div>
+                                     <div class = "col-lg-9">
+                                        <h4><span class="label label-info">Address</span></h4>
+                                     </div>
+                                   </div>
+                                  
+                                <hr>
+                                <h4><b>{{address}}</b></h4> 
+                                
+                              </div>
+                            </div>
+                      </td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+    <div class = "col-lg-1"></div>
+    <div class = "col-lg-4" *ngIf = "user">
+        <div class="list-group">
+            <p class="list-group-item active">PAYMENT METHOD</p>
+            <div class="radio" class="list-group-item">
+                <div class = "col-lg-1">
+                    <input type="radio" name="optradio" (click)="savePayment('CreditCard')">
+                </div>
+                <i class="fas fa-credit-card" style = "margin-right: 10px;"></i> <label> Credit Card</label>
+              </div>
+              <div class="radio" class="list-group-item">
+                  <div class = "col-lg-1">
+                      <input type="radio" name="optradio" (click)="savePayment('DebitCard')">
+                  </div>
+                   <span class="glyphicon glyphicon-credit-card" style = "margin-right: 10px;"></span><label>Debit Card</label>
+                </div>
+                <div class="radio" class="list-group-item">
+                    <div class = "col-lg-1">
+                        <input type="radio" name="optradio" (click)="savePayment('COD')">
+                    </div>
+                     <i class="far fa-money-bill-alt" style = "margin-right: 10px;"></i><label>COD</label>
+                  </div>
+                  <div class="radio" class="list-group-item">
+                      <div class = "col-lg-1">
+                          <input type="radio" name="optradio" (click)="savePayment('NetBanking')">
+                      </div>
+                      <i class="fas fa-university" style = "margin-right: 10px;"></i><label>Net Banking</label>
+                    </div>  
+
+          </div>
+    </div>
+  </div>
+  
+  <hr>
+  <div class = "row" *ngIf = "user">
+    <div class = "col-lg-2"><h3> <span style = "margin-right:3px;"><i class='fas fa-wallet'></i></span>wallet : {{wall}}</h3></div>
+    <div class = "col-lg-1"><button class = "btn btn-warning" (click) = "redeem()" id = "redeembutton">Redeem</button></div>
+  </div>
+  <!-- <div *ngIf="red">
+    <p>-{{wall}}</p>
+    {{newtotal}}
+  </div> -->
+  <div class = "row" *ngIf = "!user">
+      <div class = "col-lg-10">
+      </div>
+      <div class = "col-lg-2">
+        <button class="btn btn-success" (click)="documentEditForm.ngSubmit.emit()" style = "float:right;">Confirm Order</button>
+      </div>
+    </div>
+  <div></div>
+
+  <div class = "row" *ngIf = "user">
+    <div class = "col-lg-10">
+    </div>
+    <div class = "col-lg-2">
+      <button class="btn btn-success" (click)="placeOrder()" style = "float:right;">Confirm Order</button>
+    </div>
+  </div>
+
+</div>

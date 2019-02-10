@@ -1,0 +1,97 @@
+<!-- <app-navbar></app-navbar>
+<div class="input-group">
+  <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+  <input  type="text" class="form-control" [(ngModel)] = "text"  id = "search"  placeholder="search">
+</div>
+
+<div class = "container-fluid" id = "list">
+  <div class = "row" *ngFor="let product of productsList | FilterPipe : text; index as i">
+    <div class = "col-md-4">
+      <img src = {{product.image}} class = "img-responsive" width="100%">
+    </div>
+    <div class = "col-md-8">
+      <div class = "row">
+        <a [routerLink] = "['/products/'+ product._id]"><p>{{product.name}}</p></a>
+
+      </div>
+      <div class = "row">
+        <p>Rs : {{product.price}} /-</p>
+      </div>
+      <div class = "row" style="float:right;margin-right: 5%">
+        <p>{{product.rating}}/5</p>
+
+      </div>
+    </div>
+    <hr>
+  </div>
+  
+</div> -->
+
+
+<!-- --------------------------------------------new------------------------------ -->
+<app-navbar></app-navbar>
+
+<!-- <div class="container h-100">
+    <div class="d-flex justify-content-center h-100">
+      <div class="searchbar">
+        <input class="search_input" type="text" name="" placeholder="Search...">
+        <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+      </div>
+    </div>
+  </div> -->
+  
+
+      <div class="input-group" style = "margin-top:0px;">
+          <input  type="text" class="form-control search_input" [(ngModel)] = "text"  id = "search"  placeholder="search">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>  
+        
+        </div>
+      <!-- <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">WebSiteName</a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="#">Page 1</a></li>
+          <li><a href="#">Page 2</a></li>
+          <li><a href="#">Page 3</a></li>
+        </ul>
+      </div> -->
+
+
+<div class = "container-fluid" id = "list">
+  <div class = "row inner" *ngFor="let product of productsList | FilterPipe : text; index as i">
+    <div class = "col-md-4" >
+        <img src = {{product.image}}  class = "img-responsive" width="75%" >
+        <!-- <span style = "font-family: Bookman Old Style; font-size: 200%; margin-left: 5%">RATING: {{avgRating}}</span> -->
+    </div>
+    <div class = "col-md-8">
+      <div class = "row">
+        <a [routerLink] = "['/products/'+ product._id]" class = "a" style="color:blue"><h3>{{product.name}}</h3></a>
+      </div>
+      <div class = "row">
+        
+        <div class = "col-md-3">
+            <div>
+              <h3 style = " margin-left: 4px; color: rgb(224,169,5)">Price:</h3>
+                <h2 style = " margin-left: 4px; color: red">&#8377; {{product.price}}</h2>
+            </div>
+        </div>
+        <div class = "col-md-9" >
+          <!-- <div class = "row">
+            <br>
+            <br>
+          </div>
+          <button class="btn btn-info btn-lg" style="float:right; width: 85px"> -->
+              <!-- <span class="glyphicon glyphicon-shopping-cart"></span></button> -->
+        <!-- </div> -->
+        
+        
+      </div>
+      <div class = "row" style="float:right;margin-right: 5%;color:darkorange">
+        
+      </div>
+    </div>
+    <br>
+  </div>
+</div>

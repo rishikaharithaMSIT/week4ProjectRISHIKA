@@ -1,0 +1,57 @@
+<app-navbar></app-navbar>
+<div *ngIf="cartLength">
+  <div class = "image1 " style="padding:100px;margin-left:30%"><img class = "img-responsive" src = "assets/emptyCart.png"></div>
+  
+</div>
+  <div class = "container-fluid" *ngIf="!cartLength">
+      <ul class="list-group" style = "margin-bottom: 10px;">
+          <li class="list-group-item" *ngFor = "let item of cartItems; index as i">
+            <!-- {{item.prodname}}
+            {{item.prodimg}}
+            {{item.prodprice}} -->
+
+            <div class = "row">
+                <div class = "col-lg-2 col-md-2 col-sm-2">
+                    <img src="{{item.prodimg}}"  alt="..." style = "width: 55%; height: 70%">
+                </div>
+                <div class = "col-lg-4 col-md-4 col-sm-4" id="item" >
+                    <h4>{{item.prodname}}</h4>
+                </div>
+                <div class = "col-md-4">
+                    <!-- <app-quantity [price] = "item.price" [max] = "item.availability"></app-quantity> -->
+                    <div class = "row" style = "margin-top: 20%">
+                        <div class="col-md-3">
+                          <h4>{{item.prodprice}}</h4>
+                        </div>
+                        <div class = "col-md-5">
+                          <div class = "row">
+                              <div class = "col-md-3">
+                                <button class="btn btn-primary" id= 'minusbutton{{i}}' (click) = "decreasequant(i, item.product)" [disabled]= "minusstatus"> <i class="fas fa-minus" ></i></button>
+                              </div>
+                              <div class = "col-md-6">
+                                  <input id = 'quan{{i}}' style = "size:10%;"type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"  [(ngModel)] = "item.quantity" style="text-align: center;">
+                              </div>
+                              <div class = "col-md-3">
+                                <button class ="btn btn-primary" id="plusbutton{{i}}" (click) = "increasequant(i, item.prodavail, item.product);" [disabled] = "plusstatus"> <i class="fas fa-plus" ></i></button>
+                              </div> 
+                          </div>
+                        </div>
+                        <div class = "col-md-4">
+                          <h4 id = "price{{i}}"></h4>
+                        </div>
+                                                      
+                      </div>
+                </div>
+                <div class = "col-lg-2 col-md-2 col-sm-2" id="item">
+                    <button type="button" class="btn btn-outline-danger" (click)="removeItem(item.product)" style = "margin-left: 10%">Remove</button>
+                </div>
+            </div>
+          </li>
+        </ul>
+        <div class = "row">
+          <div class = "col-lg-10"></div>
+          <div class = "col-lg-2">
+              <button style = "float:right;" (click)="checkOut()" type="button" class="btn btn-warning">CHECK OUT</button>
+          </div>
+        </div>
+  </div>
